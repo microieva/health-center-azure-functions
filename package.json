@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "mssql": "^11.0.1"
+    "luxon": "^3.5.0",
+    "mssql": "^11.0.1",
+    "openai": "^4.83.0"
   },
   "main": "src/{index.js,functions/*.js}"
 }
