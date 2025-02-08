@@ -15,7 +15,7 @@ const allowedOrigins = [
     'https://wonderful-dune-0e4733c03.5.azurestaticapps.net'
 ];
 
-app.http('aiHttpTrigger', {
+app.http('httpTriggerAi', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request) => {
@@ -26,7 +26,7 @@ app.http('aiHttpTrigger', {
                 status: 204,
                 headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '',
+                    "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '*',
                     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                     "Access-Control-Allow-Headers": "Content-Type, api-key"
                 }
@@ -52,7 +52,7 @@ app.http('aiHttpTrigger', {
                     status: 200,
                     headers: {
                         "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '', 
+                        "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '*', 
                         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                         "Access-Control-Allow-Headers": "Content-Type, api-key"
                     },
