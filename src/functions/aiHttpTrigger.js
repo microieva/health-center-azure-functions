@@ -19,10 +19,9 @@ app.http('aiHttpTrigger', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request) => {
+        const origin = request.headers.get('Origin');
+        const isAllowedOrigin = allowedOrigins.includes(origin);
         if (request.method === "OPTIONS") {
-            const origin = request.headers.get('Origin');
-            const isAllowedOrigin = allowedOrigins.includes(origin);
-
             return new HttpResponse(null, {
                 status: 204,
                 headers: {
