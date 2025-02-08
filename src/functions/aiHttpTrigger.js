@@ -9,16 +9,25 @@ const openai = new AzureOpenAI({
     deployment: process.env.AZURE_OPENAI_DEPLOYMENT
 });
 
+const allowedOrigins = [
+    'https://portal.azure.com', 
+    'http://localhost:4200',
+    'https://wonderful-dune-0e4733c03.5.azurestaticapps.net'
+];
+
 app.http('aiHttpTrigger', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request) => {
         if (request.method === "OPTIONS") {
+            const origin = request.headers.get('Origin');
+            const isAllowedOrigin = allowedOrigins.includes(origin);
+
             return new HttpResponse(null, {
                 status: 204,
                 headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '',
                     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                     "Access-Control-Allow-Headers": "Content-Type, api-key"
                 }
@@ -44,9 +53,9 @@ app.http('aiHttpTrigger', {
                     status: 200,
                     headers: {
                         "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "*", 
+                        "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '', 
                         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                         "Access-Control-Allow-Headers": "Content-Type, api-key"
+                        "Access-Control-Allow-Headers": "Content-Type, api-key"
                     },
                 });
 
