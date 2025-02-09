@@ -22,11 +22,13 @@ app.http('httpTriggerAi', {
         const origin = request.headers.get('Origin');
         const isAllowedOrigin = allowedOrigins.includes(origin);
         if (request.method === "OPTIONS") {
+            let allowOrigin = isAllowedOrigin ? origin : null;
+            if (!allowOrigin) {allowOrigin = '*'}
             return new HttpResponse(null, {
                 status: 204,
                 headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '*',
+                    "Access-Control-Allow-Origin": allowOrigin,
                     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                     "Access-Control-Allow-Headers": "Content-Type, api-key"
                 }
@@ -46,13 +48,15 @@ app.http('httpTriggerAi', {
                     tool_calls: aiResponse.choices[0].message.tool_calls,
                 }
                 const body = { response };
+                let allowOrigin = isAllowedOrigin ? origin : null;
+                if (!allowOrigin) {allowOrigin = '*'}
 
                 return new HttpResponse({
                     body: JSON.stringify(body),
                     status: 200,
                     headers: {
                         "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": isAllowedOrigin ? origin : '*', 
+                        "Access-Control-Allow-Origin": allowOrigin, 
                         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                         "Access-Control-Allow-Headers": "Content-Type, api-key"
                     },
