@@ -30,7 +30,7 @@ app.http('httpTriggerAi', {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": allowOrigin,
                     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                    "Access-Control-Allow-Headers": "Content-Type, api-key"
+                    "Access-Control-Allow-Headers": "Content-Type"
                 }
             });
         }
@@ -58,7 +58,7 @@ app.http('httpTriggerAi', {
                         "Content-Type": "application/json",
                         "Access-Control-Allow-Origin": allowOrigin, 
                         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                        "Access-Control-Allow-Headers": "Content-Type, api-key"
+                        "Access-Control-Allow-Headers": "Content-Type"
                     },
                 });
 
