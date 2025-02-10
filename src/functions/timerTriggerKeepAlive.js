@@ -2,7 +2,7 @@ const { app } = require('@azure/functions');
 const sql = require('mssql');
 
 app.timer('timerTriggerKeepAlive', {
-    schedule: '0 */15 7-23 * * *',
+    schedule: '0 0 8-16/2 * * 1-5',
     handler: async (myTimer, context) => {
         context.log('Timer function processed request');
 
