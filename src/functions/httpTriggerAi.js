@@ -10,6 +10,8 @@ const openai = new AzureOpenAI({
     deployment: process.env.AZURE_OPENAI_DEPLOYMENT
 });
 
+
+
 const allowedOrigins = [
     'https://portal.azure.com', 
     'http://localhost:4200',
