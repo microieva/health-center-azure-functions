@@ -3,7 +3,7 @@ const { app, HttpResponse } = require('@azure/functions');
 const sql = require('mssql');
 
 app.http('httpTriggerDbConnection', {
-    methods: ['GET'],
+    methods: ['GET', 'OPTIONS'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
         context.log(`Http function processed request for url "${request.url}"`);
