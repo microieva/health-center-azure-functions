@@ -92,6 +92,8 @@ async function callOpenAI(userMessage) {
                 Your mission is to collect necessary appointment data from the user **before making a function call**.  
                 🚨 **Do not return a function response with empty date-time field!** 🚨  
 
+                Maintain the conversation and follow the context continuesly. If a user responds with 'yes' or 'no', treat these as answers to a previous question, and continue the conversation accordingly. Don't restart the conversation from the initial message. Provide helpful responses based on the context, guide the user to provide the necessary details for indicated operation.
+
                 If the user wants to create an appointment, you must **ask** and collect 2 pieces of information (date-time and message). 
                 If the user wants to delete / cancel an appointment, you must **ask** and collect the appointment date-time.
                 
